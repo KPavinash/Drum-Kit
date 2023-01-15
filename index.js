@@ -4,7 +4,6 @@ for( var i=0; i<numOfButtons; i++){
   
 document.querySelectorAll(".drum")[i].addEventListener("click", function () 
     {
-
         var inputButton = this.id;
         switch(inputButton){
         case '1'  : 
@@ -43,8 +42,9 @@ document.querySelectorAll(".drum")[i].addEventListener("click", function ()
             break;
                            
             default: null;
+            buttonAnimation(inputButton);
         }
-
+        
     }
 );
 }
@@ -52,6 +52,7 @@ document.querySelectorAll(".drum")[i].addEventListener("click", function ()
 document.addEventListener("keydown", function keyChecker(event)
 {
 let keyPressed = event.key;
+buttonAnimation(keyPressed)
 switch(keyPressed){
     case 'w'  : 
          var audioElementW = new Audio("sounds/crash.mp3");
@@ -93,6 +94,20 @@ switch(keyPressed){
 
 }
 );
+
+function buttonAnimation(currentKey)
+{
+    
+    var activeButton= document.querySelector("." + currentKey)
+    activeButton.classList.add('pressed');
+
+    setTimeout(removeAnimation, 100)
+    function removeAnimation()
+    {
+        activeButton.classList.remove('pressed');
+    }
+    
+}
 
 
 
